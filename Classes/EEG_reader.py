@@ -598,9 +598,9 @@ class EEGReader(QThread):
         self.model = pickle.load(open("Classes/classifier_joe_5.p","rb"))
 
     def get(self, x, y):
-        if (x >= y + 4):
+        if (x >= y + 10):
             return 1
-        if (x <= y - 4):
+        if (x <= y - 10):
             return -1
         return 0
     def comp(self, x, y):
@@ -619,6 +619,8 @@ class EEGReader(QThread):
                 print(cur, lst)
                 changes += 1
             lst = cur
+        if (changes >= 5):
+            print changes
         return changes >= 5
 
 
@@ -641,6 +643,7 @@ class EEGReader(QThread):
                 self.e.disconnect()
                 return 0
         print('Pattern Found')
+        print(gyrox)
         self.patternDetected.emit()
 
     def goClassify(self):
