@@ -3,6 +3,7 @@ import numpy
 import serial
 from InvKin import  invKin 
 from goToDegree import goToDegree
+
 def GoToPos( x,y,z,gr ):
     ser = serial.Serial("/dev/ttyACM0", baudrate=115200, timeout=3.0)
     s = invKin(x,y,z,[111.628,70.866,-65.91])

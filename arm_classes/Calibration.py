@@ -14,7 +14,7 @@ points = [[-10,25,8.7], [0,21.22,12.86], [0,36,8.7], [10,21,15],  [-15,31,20],
           [10,31,20],   [10,29,15],      [15,29,15], [-15,20,15], [-10,20,15],
           [3,18,5],     [5,20,25],       [-5,25,25], [-5,30,6],   [15,20,6]]
 
-DELAY = 15 
+DELAY = 5 
 
 kinect_frame_pts = []
 cntFrames = 0
@@ -66,8 +66,8 @@ if __name__ == "__main__":
             cv2.circle(rgb, (y, x), 10, (0, 255, 0), 2)
         cv2.imshow('RGB image', rgb)
 
-        ok, depth = capture.retrieve(0, cv2.CAP_OPENNI_DISPARITY_MAP)
-        cv2.imshow('Depth map', depth)
+        #ok, depth = capture.retrieve(0, cv2.CAP_OPENNI_DISPARITY_MAP)
+        #cv2.imshow('Depth map', depth)
 
         if (indx < 16 and cntFrames % DELAY == 0):
             ok, real = capture.retrieve(0, cv2.CAP_OPENNI_POINT_CLOUD_MAP)
