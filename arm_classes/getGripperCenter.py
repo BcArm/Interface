@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 
 def getGripperCenter(img):
+    cv2.imshow('ossama', img)
 
     def getDistance(X, Y):
         dx = X[0] - Y[0]
@@ -42,6 +43,8 @@ def getGripperCenter(img):
             if (minD < 0 or d < minD):
                 minD = d
                 result = ((a[0] + b[0]) / 2, (a[1] + b[1]) / 2)
+    cv2.waitKey(0)
 
+    print result
     return list(map(int, result))
 
