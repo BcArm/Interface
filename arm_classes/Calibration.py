@@ -5,7 +5,7 @@ from goToPosition import GoToPos
 from transformation import getTransformationMat
 import time
 from moveObj import moveObj
-from getGripperCenter import getGripperCenter
+from getGripperCenterNew import getGripperCenter
 
 
 capture = cv2.VideoCapture()
@@ -14,7 +14,7 @@ points = [[-10,25,8.7], [0,21.22,12.86], [0,36,8.7], [10,21,15],  [-15,31,20],
           [10,31,20],   [10,29,15],      [15,29,15], [-15,20,15], [-10,20,15],
           [3,18,5],     [5,20,25],       [-5,25,25], [-5,30,6],   [15,20,6]]
 
-DELAY = 15 
+DELAY = 10 
 
 kinect_frame_pts = []
 cntFrames = 0
@@ -62,6 +62,7 @@ if __name__ == "__main__":
         capture.grab()
         
         ok, rgb = capture.retrieve(0, cv2.CAP_OPENNI_BGR_IMAGE)
+        send = rgb.copy()
         
         ok, real = capture.retrieve(0, cv2.CAP_OPENNI_POINT_CLOUD_MAP)
 
@@ -83,7 +84,7 @@ if __name__ == "__main__":
 
         if (indx < 16 and cntFrames % DELAY == 0):
             ok, real = capture.retrieve(0, cv2.CAP_OPENNI_POINT_CLOUD_MAP)
-            y, x = getGripperCenter(rgb)
+            y, x = getGripperCenter(send)
             xw = 100 * real[x][y][0]
             yw = 100 * real[x][y][1]
             zw = 100 * real[x][y][2]

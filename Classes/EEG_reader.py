@@ -598,9 +598,9 @@ class EEGReader(QThread):
         self.model = pickle.load(open("Classes/classifier_joe_5.p","rb"))
 
     def get(self, x, y):
-        if (x >= y + 10):
+        if (x >= y + 7):
             return 1
-        if (x <= y - 10):
+        if (x <= y - 7):
             return -1
         return 0
     def comp(self, x, y):
