@@ -312,6 +312,8 @@ class EPOC(object):
         """Returns an array of EEG samples."""
         try:
             raw_data = self._cipher.decrypt(self.endpoint.read(32))
+            if (len(raw_data) == 0):
+                return
             # Parse counter
             ctr = ord(raw_data[0])
             # Update gyro's if requested
@@ -593,7 +595,7 @@ class EEGReader(QThread):
         QThread.__init__(self)
         self.e = EPOC()
         self.operationMode = 'detect'
-        self.model = pickle.load(open("/home/ahmed/Documents/Training Session/Final Interface/final-interface-master/classifier_munni_5.p","rb"))
+        self.model = pickle.load(open("Classes/classifier_joe_5.p","rb"))
 
     def get(self, x, y):
         if (x >= y + 4):
@@ -617,7 +619,6 @@ class EEGReader(QThread):
                 print(cur, lst)
                 changes += 1
             lst = cur
-        print(changes)
         return changes >= 5
 
 

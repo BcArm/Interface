@@ -36,7 +36,7 @@ class EpochClassifier(object):
 			if (lst == 1 and cur == 0):
 				rowcol = self.StimulusCode[ind - 1] - 1
 				L = self.SamplesData[ind - self.nflash : ind + self.window - self.nflash]
-				assert(len(L) == window)
+				assert(len(L) == self.window)
 				self.data[rowcol, rowColCnt[rowcol], :, :] = np.array(list(L))
 				rowColCnt[rowcol] += 1
 			ind += 1

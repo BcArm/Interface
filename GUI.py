@@ -15,8 +15,7 @@ from PyQt4.QtCore import pyqtSignal
 from PyQt4.QtCore import QThread
 from PyQt4.QtCore import QTimer
 import numpy as np
-
-import moveObj
+from moveObj import moveObj
 
 class App(QtGui.QMainWindow, MainUI.Ui_BCARM):
     player = Player()
@@ -35,6 +34,7 @@ class App(QtGui.QMainWindow, MainUI.Ui_BCARM):
 
     def receiveLabel(self, label):
         self.player.setFreeze(False)
+        self.player.start()
 	self.grid.startDetection()
 	(x, y, z) = self.player.getPosition(label)
 	print(x, y, z)
@@ -46,7 +46,7 @@ class App(QtGui.QMainWindow, MainUI.Ui_BCARM):
 
 		pos = np.matrix([[x],[y],[z],[1]])
 		point = TRANS_MAT * pos
-		#moveObjLine.moveObjLine(point[0],point[1],point[2],0,21.22,12.86)
+		moveObj(point[0],point[1],point[2],0,21.22,12.86)
 
     def display(self, rgb):
         self.lbl_rgb.setPixmap(QPixmap.fromImage(rgb).scaled(self.lbl_rgb.size()))

@@ -14,7 +14,6 @@ class Player(QThread):
    pos = np.zeros((20, 3), np.float32)
 
    freeze = False
-   flag = True
 
    def __init__(self):
        QThread.__init__(self)
@@ -26,7 +25,6 @@ class Player(QThread):
    
    def setFreeze(self, value):
        self.freeze = value 
-       self.flag = True
 
    def run(self):
         DEPTH_THRESH = 1000
@@ -78,15 +76,14 @@ class Player(QThread):
                     label = chr(ord('A') + cnt)
                     y, x = int(centroids[i][0]), int(centroids[i][1])
                     cv2.putText(dis, label, (y, x), cv2.FONT_HERSHEY_PLAIN, 2, (255, 255, 255))
-                    if not self.freeze:
-                        self.pos[cnt][0] = real[x][y][0]
-                        self.pos[cnt][1] = real[x][y][1]
-                        self.pos[cnt][2] = real[x][y][2]
+                    self.pos[cnt][0] = real[x][y][0]
+                    self.pos[cnt][1] = real[x][y][1]
+                    self.pos[cnt][2] = real[x][y][2]
                     cnt += 1
 
             dis = QImage(dis, width, height, QImage.Format_RGB888)
 
-            if (self.freeze and self.flag):
+            if (self.freeze):
                 nLabels = len(fLabels)
                 ret = []
                 for i in range(nLabels):
@@ -98,8 +95,7 @@ class Player(QThread):
                     img = rgb[top:bot, left:right].copy()
                     qimg = QImage(img, img.shape[1], img.shape[0], img.shape[1] * 3, QImage.Format_RGB888)
                     ret.append(qimg)
-                self.flag = False
                 self.objectsReady.emit(ret)
+                break
 
-            if (not self.freeze):
-                self.frameReady.emit(dis)
+            self.frameReady.emit(dis)
