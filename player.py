@@ -13,10 +13,8 @@ class Player(QThread):
        QThread.__init__(self)
 
    def run(self):
-       cap = cv2.VideoCapture(0)
        while True:
-           ret, frame = cap.read()
-           #frame = kinect.get_video()
+           frame = kinect.get_frame()
            height, width = frame.shape[:2]
            if (frame.shape[2] == 3):
                frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
