@@ -1,12 +1,17 @@
+import sys
+
+sys.path.append('UI/MainUI')
+sys.path.append('UI/GridUI')
+sys.path.append('Classes')
+
 from PyQt4 import QtGui
 from PyQt4.QtGui import QPixmap
 from PyQt4 import QtCore
-import main_form
-import sys
-from player import Player
-from grid_window import GridWindow
+import MainUI
+from Player import Player
+from GridWindow import GridWindow
 
-class App(QtGui.QMainWindow, main_form.Ui_BCARM):
+class App(QtGui.QMainWindow, MainUI.Ui_BCARM):
     player = Player()
     grid = None
 
@@ -17,13 +22,15 @@ class App(QtGui.QMainWindow, main_form.Ui_BCARM):
         self.player.frameReady.connect(self.display)
         self.grid = GridWindow()
 
-    def display(self, img):
-        self.lbl_rgb.setPixmap(QPixmap.fromImage(img))
-        self.lbl_segmented.setPixmap(QPixmap.fromImage(img))
+    def display(self, rgb, seg):
+        print self.player.getPosition(1)
+        self.lbl_rgb.setPixmap(QPixmap.fromImage(rgb))
+        self.lbl_segmented.setPixmap(QPixmap.fromImage(seg))
 
     def keyPressEvent(self, event):
         if event.key() == QtCore.Qt.Key_Space:
             self.grid.showFullScreen()
+            self.grid.reader.start()
 
 def main():
 	app = QtGui.QApplication(sys.argv)
