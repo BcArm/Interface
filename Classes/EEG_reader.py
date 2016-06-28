@@ -474,15 +474,15 @@ class EEGReader(QThread):
 
     def toggleCurrentLimit(self):
         if (self.currentLimit == 320):
-            self.currentLimit = 26;
+            self.currentLimit = 36;
         else:
-            self.currentLimit = 26 + 13 - self.currentLimit;
+            self.currentLimit = 36 + 13 - self.currentLimit;
 
     def toggleState(self):
         if (self.currentLimit == 320):
-            self.currentLimit = 26;         
+            self.currentLimit = 36;         
         elif (self.isFlashing):
-            self.currentLimit = 26;
+            self.currentLimit = 36;
             self.etfy();
         else:
             self.currentLimit = 13;
