@@ -575,11 +575,20 @@ class EEGReader(QThread):
         label = C.classify()
         print(label)
         self.sendLabel.emit(ord(label) - ord('A'))
+        #return label
+        #if (label == 'A'):
+        #    print(label)
+        #    moveObj.moveObj(-4.73, 25.75, 7.7);
+        #elif (label == 'H'):
+        #    print(label)
+        #    moveObj.moveObj(17.32, 20.4, 7.87);
+        #else:
+        #    print(label, "WRONG")
 
     def __init__(self):
         QThread.__init__(self)
         self.e = EPOC()
-        self.model = pickle.load(open("/path/to/classifier.p","rb"))
+        self.model = pickle.load(open("/home/ahmed/BCARM/Interface/Classes/classifier_munni_5.p","rb"))
 
     def go(self):
         while (not self.epochEnded):  
