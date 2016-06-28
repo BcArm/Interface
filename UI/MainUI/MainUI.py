@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'UI/MainUI/MainUI.ui'
 #
-# Created: Sat Jun 18 07:55:04 2016
+# Created: Mon Jun 27 15:12:38 2016
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -31,13 +31,9 @@ class Ui_BCARM(object):
         self.centralWidget = QtGui.QWidget(BCARM)
         self.centralWidget.setObjectName(_fromUtf8("centralWidget"))
         self.lbl_rgb = QtGui.QLabel(self.centralWidget)
-        self.lbl_rgb.setGeometry(QtCore.QRect(0, 144, 640, 480))
+        self.lbl_rgb.setGeometry(QtCore.QRect(0, 0, 1366, 768))
         self.lbl_rgb.setText(_fromUtf8(""))
         self.lbl_rgb.setObjectName(_fromUtf8("lbl_rgb"))
-        self.lbl_segmented = QtGui.QLabel(self.centralWidget)
-        self.lbl_segmented.setGeometry(QtCore.QRect(726, 144, 640, 480))
-        self.lbl_segmented.setText(_fromUtf8(""))
-        self.lbl_segmented.setObjectName(_fromUtf8("lbl_segmented"))
         BCARM.setCentralWidget(self.centralWidget)
 
         self.retranslateUi(BCARM)

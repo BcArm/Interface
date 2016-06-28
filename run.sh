@@ -8,4 +8,4 @@ echo "Generating GridUI"
 pyuic4 -o $UI_Path/GridUI/GridUI.py $UI_Path/GridUI/GridUI.ui
 
 echo "\nStarting Interface\n"
-python GUI.py
+sudo python GUI.py
