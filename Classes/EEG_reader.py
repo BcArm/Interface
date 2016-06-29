@@ -588,7 +588,7 @@ class EEGReader(QThread):
     def __init__(self):
         QThread.__init__(self)
         self.e = EPOC()
-        self.model = pickle.load(open("/home/ahmed/BCARM/Interface/Classes/classifier_munni_5.p","rb"))
+        #self.model = pickle.load(open("/path/to/classifier.p","rb"))
 
     def go(self):
         while (not self.epochEnded):  

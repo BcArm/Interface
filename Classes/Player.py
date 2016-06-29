@@ -104,7 +104,6 @@ class Player(QThread):
                         self.pos[cnt][0] = real[x][y][0]
                         self.pos[cnt][1] = real[x][y][1]
                         self.pos[cnt][2] = real[x][y][2]
-                    #print "Label: ", label, real[x][y][0], real[x][y][1], real[x][y][2]
                     cnt += 1
 
             ret[:, :] = 255 * (markedLabels[self.labels[:, :]] == True)
