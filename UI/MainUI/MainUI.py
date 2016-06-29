@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'UI/MainUI/MainUI.ui'
 #
-# Created: Mon Jun 27 15:12:38 2016
+# Created: Wed Jun 29 11:06:34 2016
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,12 +26,12 @@ except AttributeError:
 class Ui_BCARM(object):
     def setupUi(self, BCARM):
         BCARM.setObjectName(_fromUtf8("BCARM"))
-        BCARM.resize(1366, 768)
+        BCARM.resize(800, 480)
         BCARM.setStyleSheet(_fromUtf8("background: rgb(0, 0, 0)"))
         self.centralWidget = QtGui.QWidget(BCARM)
         self.centralWidget.setObjectName(_fromUtf8("centralWidget"))
         self.lbl_rgb = QtGui.QLabel(self.centralWidget)
-        self.lbl_rgb.setGeometry(QtCore.QRect(0, 0, 1366, 768))
+        self.lbl_rgb.setGeometry(QtCore.QRect(0, 0, 800, 480))
         self.lbl_rgb.setText(_fromUtf8(""))
         self.lbl_rgb.setObjectName(_fromUtf8("lbl_rgb"))
         BCARM.setCentralWidget(self.centralWidget)
