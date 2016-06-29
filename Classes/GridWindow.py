@@ -49,7 +49,7 @@ class GridWindow(QtGui.QMainWindow, GridUI.Ui_BCARM):
         for i in range(3):
             self.labelsList[x][y].setStyleSheet("color: rgb(255, 255, 255)")
             font = QtGui.QFont()
-            font.setPointSize(128)
+            font.setPointSize(64)
             self.labelsList[x][y].setFont(font)
             x = x + dx
             y = y + dy
@@ -63,7 +63,7 @@ class GridWindow(QtGui.QMainWindow, GridUI.Ui_BCARM):
         for i in range(3):
             self.labelsList[x][y].setStyleSheet("color: rgb(61, 61, 61)")
             font = QtGui.QFont()
-            font.setPointSize(96)
+            font.setPointSize(48)
             self.labelsList[x][y].setFont(font)
             x = x + dx
             y = y + dy
