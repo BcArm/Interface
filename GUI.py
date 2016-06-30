@@ -16,7 +16,7 @@ from PyQt4.QtCore import QThread
 from PyQt4.QtCore import QTimer
 import numpy as np
 
-import moveObjLine
+import moveObj
 
 class App(QtGui.QMainWindow, MainUI.Ui_BCARM):
     player = Player()
