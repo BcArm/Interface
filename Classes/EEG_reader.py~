@@ -606,6 +606,7 @@ class EEGReader(QThread):
             return True
         return x == y
     def containPattern(self, gyro):
+        print(gyro)
         if (len(gyro) < self.patternLength):
             return False
         n = self.patternLength

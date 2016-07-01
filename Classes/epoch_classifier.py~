@@ -10,7 +10,7 @@ class EpochClassifier(object):
 	Flashing = 0
 	StimulusCode = 0
 	model = 0
-	window = 70
+	window = 128
 	nChannels = 14
 	nflash = 13
 	data = 0

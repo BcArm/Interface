@@ -51,6 +51,7 @@ class App(QtGui.QMainWindow, MainUI.Ui_BCARM):
     def display(self, rgb):
         self.lbl_rgb.setPixmap(QPixmap.fromImage(rgb).scaled(self.lbl_rgb.size()))
 
+
     def startClassification(self):
         self.player.setFreeze(True)
         self.grid.startClassification()
