@@ -1,16 +1,19 @@
 from PyQt4.QtCore import QThread
 from PyQt4.QtCore import pyqtSignal
+from PyQt4.QtGui  import QImage
 
 import cv2
 import numpy as np
+
 from goToPosition import GoToPos
 from transformation import getTransformationMat
 from moveObj import moveObj
-from getGripperCenterNew import getGripperCenter
+from getGripperCenter import getGripperCenter
 
 
 class Calibrator(QThread):
     frameReady = pyqtSignal(QImage)
+    done = pyqtSignal(np.matrixlib.defmatrix.matrix)
 
     def __init__(self):
         QThread.__init__(self)
@@ -26,8 +29,7 @@ class Calibrator(QThread):
         cntFrames = 0
         indx = 0
 
-        capture = cv2.VideoCapture()
-        capture.open(cv2.CAP_OPENNI)
+        capture = cv2.VideoCapture(cv2.CAP_OPENNI)
 
         x, y = 0, 0
 
@@ -54,7 +56,8 @@ class Calibrator(QThread):
 	    if (rgb.shape[2] == 3):
                 rgb = cv2.cvtColor(rgb, cv2.COLOR_BGR2RGB)
 			
-	    self.frameReady(QImage(rgb, width, height, QImage.Format_RGB888))
+            height, width = rgb.shape[:2]
+	    self.frameReady.emit(QImage(rgb, width, height, QImage.Format_RGB888))
 
             if (indx < 16 and cntFrames % DELAY == 0):
 	        y, x = getGripperCenter(cp)
@@ -64,9 +67,9 @@ class Calibrator(QThread):
 	        if (indx > 0):
 	            print "Point ", indx, ": ", xw, yw, zw
 		    kinect_frame_pts.append([xw, yw, zw])
-	        if (indx < 15):
-	            GoToPos(points[indx][0], points[indx][1], points[indx][2], 'close')
-		    indx += 1
+	        #if (indx < 15):
+	            #GoToPos(points[indx][0], points[indx][1], points[indx][2], 'close')
+                indx += 1
 
             if (indx == 16):
 	        print "Calculating transformation matrix......"
@@ -88,7 +91,9 @@ class Calibrator(QThread):
                                                 [kinect_frame_pts[14][0],kinect_frame_pts[14][1],kinect_frame_pts[14][2],1],])
 
                 TRANS_MAT = getTransformationMat(Kinect_frame_matrix.transpose())
+                self.done.emit(TRANS_MAT)
 		break
 
             cntFrames += 1
+        capture.release()
 

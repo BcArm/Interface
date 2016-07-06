@@ -99,3 +99,4 @@ class Player(QThread):
                 break
 
             self.frameReady.emit(dis)
+        capture.release()
